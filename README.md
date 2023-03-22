@@ -1,1 +1,1 @@
-# closestPair
+NYCU Algorithm assignment 1
