@@ -1,11 +1,15 @@
-FILE_NAME := calculatorTest.py
-CACHE := ./__pycache__
+FILE_NAME := test_calculator.py
+CACHE := ./__pycache__  .coverage ./htmlcov 
 
 .PHONY: clean
 
-run:
+coverage:
 	@flake8 --max-line-length=127 $(FILE_NAME)
-	@python3 -m unittest -v $(FILE_NAME)
+	@coverage run -m unittest $(FILE_NAME)
+
+report: .coverage
+	@coverage report
+	@coverage html
 
 clean:
 	@$(RM) -r $(CACHE)
