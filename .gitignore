@@ -1,5 +1,5 @@
 ./vscode
 
-*/.coverage
-*/htmlcov/
-*/__pycache__/
+.coverage
+htmlcov/
+__pycache__/
