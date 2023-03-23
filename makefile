@@ -1,22 +1,25 @@
 FILE_NAME := calculator.py
-SRC := ./src/$(FILE_NAME)
-TEST := ./test/test_$(FILE_NAME)
+SRC := src/$(FILE_NAME)
+TEST := test/test_$(FILE_NAME)
 CACHE := */__pycache__  .coverage ./htmlcov 
 
-.PHONY: clean
+.PHONY: test clean
 
 flake8:
-	@flake8 --max-line-length=255 $(SRC) $(TEST)
+	flake8 --max-line-length=255 $(SRC) $(TEST)
 
-run: flake8
-	@python3 $(SRC)
+requirement:
+	pip freeze > requirements.txt
 
-test: flake8
-	@coverage run -m unittest $(TEST)
+run:
+	python3 $(SRC)
+
+test:
+	coverage run -m unittest $(TEST)
 
 report: test
-	@coverage report -m
-	@coverage html
+	coverage report -m
+	coverage html
 
 clean:
-	@$(RM) -r $(CACHE)
+	$(RM) -r $(CACHE)
