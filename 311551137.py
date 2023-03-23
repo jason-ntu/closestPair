@@ -76,7 +76,6 @@ class Converter:
 
 
 if __name__ == '__main__':  # pragma: no cover
-    print("Start executing...")
     cases = Converter().input_to_cases()
     for i in range(len(cases)):
-        print("The closet distance of case %d is %.6f" % (i, Calculator().min_distance(cases[i])))
+        print("%.6f" % (float(Calculator().min_distance(cases[i]))))
