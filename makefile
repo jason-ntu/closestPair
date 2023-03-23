@@ -1,14 +1,21 @@
-FILE_NAME := test_calculator.py
-CACHE := ./__pycache__  .coverage ./htmlcov 
+FILE_NAME := calculator.py
+SRC := ./src/$(FILE_NAME)
+TEST := ./test/test_$(FILE_NAME)
+CACHE := */__pycache__  .coverage ./htmlcov 
 
 .PHONY: clean
 
-coverage:
-	@flake8 --max-line-length=255 $(FILE_NAME)
-	@coverage run -m unittest $(FILE_NAME)
+flake8:
+	@flake8 --max-line-length=255 $(SRC) $(TEST)
 
-report: .coverage
-	@coverage report
+run: flake8
+	@python3 $(SRC)
+
+test: flake8
+	@coverage run -m unittest $(TEST)
+
+report: test
+	@coverage report -m
 	@coverage html
 
 clean:
